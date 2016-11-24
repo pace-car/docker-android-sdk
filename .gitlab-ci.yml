@@ -13,8 +13,6 @@ variables:
   CONTAINER_LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
 
 before_script:
-  - echo "$CI_BUILD_TOKEN"
-  - echo "$CI_REGISTRY"
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
 
 build:
