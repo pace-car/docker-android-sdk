@@ -3,7 +3,7 @@ FROM ruby:2.3
 # Installs Oracle JAVA 8
 RUN apt-get update -y && \
     apt-get install -y software-properties-common && \
-    add-apt-repository 'http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' -y && \
+    add-apt-repository 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' -y && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886 && \
     apt-get update -y && \
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
