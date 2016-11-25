@@ -1,4 +1,5 @@
 FROM ruby:2.3
+ARG build_tools_version=25.0.1
 
 # Installs Oracle JAVA 8
 RUN apt-get update -y && \
@@ -35,7 +36,6 @@ RUN dpkg --add-architecture i386 && \
 ENV ANDROID_SDK_FILENAME android-sdk_r24.4.1-linux.tgz
 ENV ANDROID_SDK_URL http://dl.google.com/android/${ANDROID_SDK_FILENAME}
 ENV ANDROID_API_LEVELS android-25
-VAR $build_tools_version
 ENV ANDROID_BUILD_TOOLS_VERSION $build_tools_version
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
