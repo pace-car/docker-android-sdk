@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ruby:2.3
 
 # Installs Oracle JAVA 8
 RUN apt-get update -y && \
