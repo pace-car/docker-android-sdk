@@ -9,7 +9,6 @@ stages:
 
 variables:
   CONTAINER_TEST_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME
-  CONTAINER_TAG_IMAGE: $CI_REGISTRY_IMAGE:$CI_BUILD_TAG
   CONTAINER_LATEST_IMAGE: $CI_REGISTRY_IMAGE:latest
 
 before_script:
@@ -20,13 +19,6 @@ build:
   script:
     - docker build --pull -t $CONTAINER_TEST_IMAGE .
     - docker push $CONTAINER_TEST_IMAGE
-
-tag-image:
-  stage: release
-  script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_TAG_IMAGE
-    - docker push $CONTAINER_TAG_IMAGE
   only:
     - tags
 
@@ -37,4 +29,4 @@ latest-image:
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_LATEST_IMAGE
     - docker push $CONTAINER_LATEST_IMAGE
   only:
-    - master
+    - tags
