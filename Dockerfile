@@ -45,5 +45,16 @@ RUN cd /opt && \
     rm ${ANDROID_SDK_FILENAME} && \
     echo y | android update sdk --no-ui -a --filter tools,platform-tools,${ANDROID_API_LEVELS},build-tools-${ANDROID_BUILD_TOOLS_VERSION},extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services,extra-google-play_billing,extra-google-webdriver
 
+# Installs Android NDK
+ENV ANDROID_NDK_HOME /opt/android-ndk
+ENV ANDROID_NDK_VERSION r14b
+ENV PATH ${PATH}:${ANDROID_NDK_HOME}
+RUN mkdir /opt/android-ndk-tmp && \
+    cd /opt/android-ndk-tmp && \
+    wget -q https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip && \
+    unzip -q android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip && \
+    mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME} && \
+    cd && rm -rf /opt/android-ndk-tmp
+
 # Installs fastlane
 RUN gem install fastlane
