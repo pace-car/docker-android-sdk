@@ -49,7 +49,8 @@ RUN cd /opt && \
 ENV ANDROID_NDK_HOME /opt/android-ndk
 ENV ANDROID_NDK_VERSION r14b
 ENV PATH ${PATH}:${ANDROID_NDK_HOME}
-RUN mkdir /opt/android-ndk-tmp && \
+RUN apt-get install -y cmake unzip && \
+    mkdir /opt/android-ndk-tmp && \
     cd /opt/android-ndk-tmp && \
     wget -q https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip && \
     unzip -q android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip && \
