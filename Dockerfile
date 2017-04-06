@@ -38,7 +38,7 @@ ENV ANDROID_SDK_URL http://dl.google.com/android/${ANDROID_SDK_FILENAME}
 ENV ANDROID_API_LEVELS android-25
 ENV ANDROID_BUILD_TOOLS_VERSION $build_tools_version
 ENV ANDROID_HOME /opt/android-sdk-linux
-ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
 RUN cd /opt && \
     wget -q ${ANDROID_SDK_URL} && \
     tar -xzf ${ANDROID_SDK_FILENAME} && \
@@ -57,6 +57,9 @@ RUN apt-get update -y && \
     unzip -q android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip && \
     mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME} && \
     cd && rm -rf /opt/android-ndk-tmp
+
+# Update SDKs to accept licenses - not sure why this is needed
+RUN echo y | sdkmanager --update
 
 # Installs fastlane
 RUN gem install fastlane
