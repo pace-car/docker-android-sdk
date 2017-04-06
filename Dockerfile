@@ -1,5 +1,5 @@
 FROM ruby:2.3
-ARG build_tools_version=25.0.1
+ARG build_tools_version=25.0.2
 
 # Installs Oracle JAVA 8
 RUN apt-get update -y && \
